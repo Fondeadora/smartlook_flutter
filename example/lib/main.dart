@@ -12,32 +12,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  var isRecording = false;
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+
+    init();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
+  Future<void> init() async {
     try {
-      await SmartlookFlutter.setup("123");
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      await SmartlookFlutter.setup("");
+    } on PlatformException catch(exception) {
+      print(exception.message);
     }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -45,10 +34,47 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: Text('Smartlook example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Center(
+              child: Text(isRecording ? "Recording..." : "Stopped"),
+            ),
+            Center(
+              child: OutlineButton(
+                onPressed: () async {
+                  if(await SmartlookFlutter.start()) {
+                    setState(() {
+                      this.isRecording = true;
+                    });
+                  }
+                },
+                child: Text('Start recording'),
+                )
+            ),
+            Center(
+              child: OutlineButton(
+                onPressed: () async {
+                  if(await SmartlookFlutter.stop()){
+                    setState(() {
+                      this.isRecording = false;
+                    });
+                  }
+                },
+                child: Text('Stop recording'),
+                )
+            ),
+            Center(
+              child: Container(
+                width: 200.0,
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Input"),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

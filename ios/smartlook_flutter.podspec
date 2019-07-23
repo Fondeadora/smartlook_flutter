@@ -15,7 +15,11 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
+  s.dependency 'Smartlook', '1.1.0'
+  s.dependency 'SwiftTryCatch'
+  
+  s.static_framework = true
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 end
 

@@ -1,0 +1,33 @@
+PODS:
+  - Flutter (1.0.0)
+  - Smartlook (1.1.0)
+  - smartlook_flutter (0.0.1):
+    - Flutter
+    - Smartlook (= 1.1.0)
+    - SwiftTryCatch
+  - SwiftTryCatch (0.0.1)
+
+DEPENDENCIES:
+  - Flutter (from `.symlinks/flutter/ios`)
+  - smartlook_flutter (from `.symlinks/plugins/smartlook_flutter/ios`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Smartlook
+    - SwiftTryCatch
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+  smartlook_flutter:
+    :path: ".symlinks/plugins/smartlook_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  Smartlook: 3057f876adaf77fd655d701c86c2a9a272bd4055
+  smartlook_flutter: dae310a6701ba2f96fd7a87b3e9fc9db2c1d4cd4
+  SwiftTryCatch: fb6d2b34abe48efd69578dac919293a44f95b481
+
+PODFILE CHECKSUM: 2c26e2bafa90f053205a9e99ab1fdce88251e293
+
+COCOAPODS: 1.7.3
