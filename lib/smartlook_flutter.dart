@@ -18,15 +18,7 @@ class SmartlookFlutter {
     return _channel.invokeMethod('stop');
   }
 
-  static Future<bool> startSensitiveMode() async {
-    return _channel.invokeMethod('startSensitiveMode');
-  }
-
-  static Future<bool> stopSensitiveMode() async {
-    return _channel.invokeMethod('stopSensitiveMode');
-  }
-
-  static Future<bool> identify(String userId) async {
-    return _channel.invokeMethod('identify', {'userId': userId});
+  static Future<bool> identify(String userId, String email, String name) async {
+    return _channel.invokeMethod('identify', {'userId': userId, "email": email, "name": name});
   }
 }

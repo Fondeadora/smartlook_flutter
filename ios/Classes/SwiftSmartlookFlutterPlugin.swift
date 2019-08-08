@@ -27,9 +27,12 @@ public class SwiftSmartlookFlutterPlugin: NSObject, FlutterPlugin {
         
       case "identify":
         if let args = call.arguments as? [String: Any],
-          let userId = args["userId"] as? String {
-          
+          let userId = args["userId"] as? String,
+          let email = args["email"] as? String,
+          let name = args["name"] as? String {
           Smartlook.setUserIdentifier(userId)
+          Smartlook.setSessionProperty(value: email, forName: "Email")
+          Smartlook.setSessionProperty(value: name, forName: "Name")
         } else {
           result(false)
           return
@@ -40,12 +43,6 @@ public class SwiftSmartlookFlutterPlugin: NSObject, FlutterPlugin {
         
       case "stop":
         Smartlook.stopRecording()
-        
-      case "startSensitiveMode":
-        Smartlook.beginFullscreenSensitiveMode()
-        
-      case "stopSensitiveMode":
-        Smartlook.endFullscreenSensitiveMode()
         
       default:
         result(FlutterMethodNotImplemented)
