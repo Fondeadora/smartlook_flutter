@@ -24,7 +24,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> init() async {
     try {
       await SmartlookFlutter.setup("");
-    } on PlatformException catch(exception) {
+      await SmartlookFlutter.identify("7", "email@example.com", "John Lennon");
+    } on PlatformException catch (exception) {
       print(exception.message);
     }
   }
@@ -43,29 +44,29 @@ class _MyAppState extends State<MyApp> {
               child: Text(isRecording ? "Recording..." : "Stopped"),
             ),
             Center(
-              child: OutlineButton(
-                onPressed: () async {
-                  if(await SmartlookFlutter.start()) {
-                    setState(() {
-                      this.isRecording = true;
-                    });
-                  }
-                },
-                child: Text('Start recording'),
-                )
-            ),
+                child: OutlineButton(
+              onPressed: () async {
+                if (await SmartlookFlutter.start()) {
+                  print("start");
+                  setState(() {
+                    this.isRecording = true;
+                  });
+                }
+              },
+              child: Text('Start recording'),
+            )),
             Center(
-              child: OutlineButton(
-                onPressed: () async {
-                  if(await SmartlookFlutter.stop()){
-                    setState(() {
-                      this.isRecording = false;
-                    });
-                  }
-                },
-                child: Text('Stop recording'),
-                )
-            ),
+                child: OutlineButton(
+              onPressed: () async {
+                if (await SmartlookFlutter.stop()) {
+                  print("stop");
+                  setState(() {
+                    this.isRecording = false;
+                  });
+                }
+              },
+              child: Text('Stop recording'),
+            )),
             Center(
               child: Container(
                 width: 200.0,
